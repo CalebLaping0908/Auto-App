@@ -11,11 +11,17 @@ class Technician(models.Model):
     name = models.CharField(max_length=100)
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
+    def get_api_url(self):
+        return reverse("api_show_technician", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return self.name
+
 
 class Appointment(models.Model):
     vin = models.CharField(max_length=17, null=True)
     owner = models.CharField(max_length=100)
-    time = models.DateTimeField()
+    time = models.DateField()
     reason = models.TextField()
     vip = models.BooleanField(default=False)
 
