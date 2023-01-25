@@ -26,7 +26,6 @@ def poll():
                     "color": automobile["color"],
                     },
                 )
-            pass
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)

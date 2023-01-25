@@ -27,6 +27,7 @@ class AppointmentListEncoder(ModelEncoder):
      properties = [
           "id",
           "vin",
+          "vip",
           "technician",
      ]
      def get_extra_data(self, o):
@@ -135,6 +136,16 @@ def api_show_appointment(request, pk):
     else:
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(['GET'])
+def api_service_history(request, vin):
+
+    appointments = Appointment.objects.filter(vin=vin)
+    return JsonResponse(
+        {"appointments": appointments},
+        encoder=AppointmentDetailEncoder,
+    )
 
 
 @require_http_methods(['GET'])
