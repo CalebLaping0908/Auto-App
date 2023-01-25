@@ -3,9 +3,12 @@ from django.urls import reverse
 
 
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=200, null=True)
+    vin = models.CharField(max_length=200, unique=True, null=True)
     year = models.PositiveSmallIntegerField(null=True)
     color = models.CharField(max_length=100)
+
+    def get_api_url(self):
+        return reverse("api_automobile", kwargs={"vin": self.vin})
 
     def __str__(self):
         return f"{self.import_href}"
@@ -15,15 +18,15 @@ class AutomobileVO(models.Model):
 
 class SalesPerson(models.Model):
     name = models.CharField(max_length=200)
-    employee_number = models.PositiveIntegerField()
+    employee_number = models.PositiveIntegerField(unique=True)
 
     def get_api_url(self):
-        return reverse("api_show_sales_person", kwargs={"pk": self.pk})
+        return reverse("api_sales_person", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.name
 
-class Customer(models.Models):
+class Customer(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=10)
@@ -54,6 +57,9 @@ class SalesLog(models.Model):
         null=True,
         on_delete=models.PROTECT
     )
+
+    def get_api_url(self):
+        return reverse("api_sales", kwargs={"vin": self.vin})
 
 
     def __str__(self):
