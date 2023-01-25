@@ -81,3 +81,13 @@ def api_show_technician(request, pk):
     else:
         count, _ = Technician.objects.filter(employee_number=pk).delete()
         return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(['GET'])
+def api_list_automobileVO(request):
+
+    automobiles = AutomobileVO.objects.all()
+    return JsonResponse(
+        {'autos': automobiles},
+        encoder=AutomobileVODetailEncoder,
+    )
