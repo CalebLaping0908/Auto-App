@@ -11,9 +11,6 @@ class Technician(models.Model):
     name = models.CharField(max_length=100)
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
-    def get_api_url(self):
-        return reverse("api_show_technician", kwargs={"pk": self.pk})
-
     def __str__(self):
         return self.name
 
@@ -31,8 +28,9 @@ class Appointment(models.Model):
         on_delete=models.PROTECT,
     )
 
-    def get_api_url(self):
-        return reverse("api_show_appointment", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return self.owner
+        return self.vin
+
+    # def get_api_url(self):
+    #     return reverse("api_show_appointment", kwargs={"pk": self.pk})
