@@ -38,6 +38,14 @@ class CustomerListEncoder(ModelEncoder):
         "phone_number",
     ]
 
+class CustomerDetailEncoder(ModelEncoder):
+    model = Customer
+    properties = [
+        "name",
+        "address",
+        "phone_number",
+    ]
+
 class SalesLogDetailEncoder(ModelEncoder):
     model = SalesLog
     properties = [
@@ -87,4 +95,38 @@ def api_show_sales_person(request, id):
         )
     else:
         count, _ = SalesPerson.objects.filter(id=id).delete()
+        return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["GET", "POST"])
+def api_list_customer(request):
+
+    if request.method == "GET":
+        customer = Customer.objects.all()
+        return JsonResponse(
+            {"customer": customer},
+            encoder=CustomerListEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+
+        customer = Customer.objects.create(**content)
+        return JsonResponse(
+            customer,
+            encoder=CustomerListEncoder,
+            safe=False,
+        )
+
+@require_http_methods(["GET", "DELETE"])
+def api_show_customer(request, id):
+
+    if request.method == 'GET':
+        customer = Customer.objects.get(id=id)
+        return JsonResponse(
+            customer,
+            encoder=CustomerDetailEncoder,
+            safe=False,
+        )
+    else:
+        count, _ = Customer.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
