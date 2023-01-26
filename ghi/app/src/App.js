@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import ListAppointments from './ListAppointments';
+import CreateAppointment from './CreateAppointment';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -18,8 +19,21 @@ function App() {
     }
   }
 
+  const [technicians, setTechnicians] = useState([]);
+
+  const getTechnicians = async () => {
+    const techniciansResponse = await fetch('http://localhost:8080/api/technicians/');
+
+    if (techniciansResponse.ok) {
+      const technicianData = await techniciansResponse.json();
+
+      setTechnicians(technicianData.technicians);
+    }
+  }
+
   useEffect(() => {
     getAppointments();
+    getTechnicians();
   }, [])
 
 
@@ -34,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} />} />
+          <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
         </Routes>
       </div>
     </BrowserRouter>
