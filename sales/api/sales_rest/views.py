@@ -14,7 +14,7 @@ class AutomobileVOEncoder(ModelEncoder):
         "color",
     ]
 
-class SalesPersonListEncoder(ModelEncoder):
+class SalesPersonEncoder(ModelEncoder):
     model = SalesPerson
     properties = [
         "id",
@@ -22,15 +22,7 @@ class SalesPersonListEncoder(ModelEncoder):
         "employee_number",
     ]
 
-class SalesPersonDetailEncoder(ModelEncoder):
-    model = SalesPerson
-    properties = [
-        "id",
-        "name",
-        "employee_number",
-    ]
-
-class CustomerListEncoder(ModelEncoder):
+class CustomerEncoder(ModelEncoder):
     model = Customer
     properties = [
         "id",
@@ -39,16 +31,7 @@ class CustomerListEncoder(ModelEncoder):
         "phone_number",
     ]
 
-class CustomerDetailEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "id",
-        "name",
-        "address",
-        "phone_number",
-    ]
-
-class SalesLogListEncoder(ModelEncoder):
+class SalesLogEncoder(ModelEncoder):
     model = SalesLog
     properties = [
         "id",
@@ -59,8 +42,8 @@ class SalesLogListEncoder(ModelEncoder):
     ]
 
     encoders = {
-            "sales_person": SalesPersonListEncoder(),
-            "customer": CustomerListEncoder(),
+            "sales_person": SalesPersonEncoder(),
+            "customer": CustomerEncoder(),
             "automobile": AutomobileVOEncoder(),
         }
 
@@ -70,23 +53,6 @@ class SalesLogListEncoder(ModelEncoder):
                 "sales_person": o.sales_person.name,
         }
 
-
-class SalesLogDetailEncoder(ModelEncoder):
-    model = SalesLog
-    properties = [
-        "id",
-        "sales_person",
-        "automobile",
-        "purchase_price",
-        "customer"
-    ]
-
-    encoders = {
-            "sales_person": SalesPersonListEncoder(),
-            "customer": CustomerListEncoder(),
-            "automobile": AutomobileVOEncoder(),
-        }
-
 @require_http_methods(["GET", "POST"])
 def api_list_sales_person(request):
 
@@ -94,7 +60,7 @@ def api_list_sales_person(request):
         sales_person = SalesPerson.objects.all()
         return JsonResponse(
             {"sales_person": sales_person},
-            encoder=SalesPersonListEncoder,
+            encoder=SalesPersonEncoder,
         )
     else:
         content = json.loads(request.body)
@@ -102,7 +68,7 @@ def api_list_sales_person(request):
         sales_person = SalesPerson.objects.create(**content)
         return JsonResponse(
             sales_person,
-            encoder=SalesPersonListEncoder,
+            encoder=SalesPersonEncoder,
             safe=False,
         )
 
@@ -113,7 +79,7 @@ def api_show_sales_person(request, id):
         sales_person = SalesPerson.objects.get(id=id)
         return JsonResponse(
             sales_person,
-            encoder=SalesPersonDetailEncoder,
+            encoder=SalesPersonEncoder,
             safe=False,
         )
     else:
@@ -128,7 +94,7 @@ def api_list_customer(request):
         customer = Customer.objects.all()
         return JsonResponse(
             {"customer": customer},
-            encoder=CustomerListEncoder,
+            encoder=CustomerEncoder,
         )
     else:
         content = json.loads(request.body)
@@ -136,7 +102,7 @@ def api_list_customer(request):
         customer = Customer.objects.create(**content)
         return JsonResponse(
             customer,
-            encoder=CustomerListEncoder,
+            encoder=CustomerEncoder,
             safe=False,
         )
 
@@ -147,7 +113,7 @@ def api_show_customer(request, id):
         customer = Customer.objects.get(id=id)
         return JsonResponse(
             customer,
-            encoder=CustomerDetailEncoder,
+            encoder=CustomerEncoder,
             safe=False,
         )
     else:
@@ -161,7 +127,7 @@ def api_list_sales_log(request):
         sales_log = SalesLog.objects.all()
         return JsonResponse(
             {"sales_log": sales_log},
-             encoder=SalesLogListEncoder,
+             encoder=SalesLogEncoder,
         )
     else:
         content = json.loads(request.body)
@@ -197,36 +163,9 @@ def api_list_sales_log(request):
             )
 
         sales_log = SalesLog.objects.create(**content)
-        print(sales_log, "YAYAYAY")
+
         return JsonResponse(
             sales_log,
-            encoder=SalesLogListEncoder,
+            encoder=SalesLogEncoder,
             safe=False,
         )
-
-# @require_http_methods(["DELETE", "GET", "PUT"])
-# def api_show_shoe(request, id):
-#     if request.method == "GET":
-#         shoe = Shoe.objects.get(id=id)
-#         return JsonResponse(
-#             shoe, encoder=ShoeDetailEncoder, safe=False
-#         )
-#     elif request.method == "DELETE":
-#         count, _ = Shoe.objects.filter(id=id).delete()
-#         return JsonResponse({"deleted": count > 0})
-#     else:
-#         content = json.loads(request.body)
-
-#         try:
-#             if "bin" in content:
-#                 bin = BinVO.objects.get(id=content["bin"])
-#                 content["bin"] = bin
-#         except BinVO.DoesNotExist:
-#             return JsonResponse(
-#                 {"message": "Invalid bin id"}, status=400
-#             )
-#         Shoe.objects.filter(id=id).update(**content)
-#         attendee = Shoe.objects.get(id=id)
-#         return JsonResponse(
-#             attendee, encoder=ShoeDetailEncoder, safe=False
-#         )
