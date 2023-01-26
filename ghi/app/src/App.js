@@ -47,7 +47,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} />} />
+          <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} setAppointments={setAppointments}/>} />
           <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
         </Routes>
       </div>

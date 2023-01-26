@@ -86,7 +86,7 @@ function CreateAppointment(props) {
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Make an appointment!</h1>
-            <form onSubmit={handleSubmit} id="create-conference-form">
+            <form onSubmit={handleSubmit} id="create-appointment-form">
               <div className="form-floating mb-3">
                 <input onChange={handleVinChange} value={vin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
                 <label htmlFor="vin">VIN</label>
