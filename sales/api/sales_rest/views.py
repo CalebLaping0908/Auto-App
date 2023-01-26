@@ -169,3 +169,17 @@ def api_list_sales_log(request):
             encoder=SalesLogEncoder,
             safe=False,
         )
+
+@require_http_methods(["GET", "DELETE"])
+def api_show_sales_log(request, id):
+
+    if request.method == 'GET':
+        sales_log = SalesLog.objects.get(id=id)
+        return JsonResponse(
+            sales_log,
+            encoder=SalesLogEncoder,
+            safe=False,
+        )
+    else:
+        count, _ = SalesLog.objects.filter(id=id).delete()
+        return JsonResponse({"deleted": count > 0})
