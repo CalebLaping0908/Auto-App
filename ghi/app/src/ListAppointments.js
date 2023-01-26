@@ -32,7 +32,7 @@ function ListAppointments(props) {
               <td>{ String(appointment.vip) }</td>
               <td>{ appointment.technician.name }</td>
               <td>{ appointment.vin }</td>
-              <td><button onClick={() => deleteAppointment(appointment)}>Delete</button></td>
+              <td><button class="btn btn-danger" onClick={() => deleteAppointment(appointment)}>Delete</button></td>
             </tr>
           );
         })}
