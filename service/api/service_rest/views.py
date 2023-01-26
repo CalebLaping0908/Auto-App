@@ -25,13 +25,17 @@ class TechnicianDetailEncoder(ModelEncoder):
 class AppointmentListEncoder(ModelEncoder):
      model = Appointment
      properties = [
-          "id",
-          "vin",
-          "vip",
-          "technician",
-     ]
-     def get_extra_data(self, o):
-        return {"technician": o.technician.employee_number}
+        "id",
+        "vin",
+        "owner",
+        "time",
+        "reason",
+        "vip",
+        "technician",
+    ]
+     encoders = {
+        "technician": TechnicianDetailEncoder(),
+    }
 
 
 class AppointmentDetailEncoder(ModelEncoder):
