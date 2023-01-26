@@ -45,7 +45,7 @@ function ListAppointments({appointments, setAppointments, getAppointments}) {
         <thead>
           <tr>
             <th>Owner</th>
-            <th>Time</th>
+            <th>Date</th>
             <th>Reason</th>
             <th>VIP</th>
             <th>Technician</th>

@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import ListAppointments from './ListAppointments';
 import CreateAppointment from './CreateAppointment';
+import CreateTechnician from './CreateTechnician';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} setAppointments={setAppointments}/>} />
           <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
+          <Route path="/create/technician" element={<CreateTechnician getTechnicians={getTechnicians}/>} />
         </Routes>
       </div>
     </BrowserRouter>
