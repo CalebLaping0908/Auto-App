@@ -11,7 +11,7 @@ function CreateAutomobile(props) {
         data.color = color;
         data.vin = vin;
 
-        const automobileUrl = '	http://localhost:8100/api/automobiles/';
+        const automobileUrl = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
