@@ -7,6 +7,7 @@ import CreateTechnician from './CreateTechnician';
 import ListAutos from './ListAutos';
 import ListModels from './ListModels';
 import ListManufacturers from './ListManufacturers';
+import CreateAutomobile from './CreateAutomobile';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -93,8 +94,9 @@ function App() {
           <Route path="/manufacturers" element={<ListManufacturers manufacturers={manufacturers} getManufacturers={getManufacturers} />} />
           <Route path="/models" element={<ListModels models={models} getModels={getModels} />} />
           <Route path="/automobiles" element={<ListAutos automobiles={automobiles} getAutomobiles={getAutomobiles} />} />
+          <Route path="/create/automobile" element={<CreateAutomobile getAutomobiles={getAutomobiles} />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} setAppointments={setAppointments}/>} />
-          <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
+          <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} />} />
           <Route path="/create/technician" element={<CreateTechnician getTechnicians={getTechnicians}/>} />
         </Routes>
       </div>

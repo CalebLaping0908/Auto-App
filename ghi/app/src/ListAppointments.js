@@ -62,7 +62,7 @@ function ListAppointments({appointments, setAppointments, getAppointments}) {
               <td>{ String(appointment.vip) }</td>
               <td>{ appointment.technician.name }</td>
               <td>{ appointment.vin }</td>
-              <td><button type="button" class="btn btn-success" onClick={() => deleteAppointment(appointment)}>Complete</button></td>
+              <td><button type="button" className="btn btn-success" onClick={() => deleteAppointment(appointment)}>Complete</button></td>
               <td><button className="btn btn-danger" onClick={() => deleteAppointment(appointment)}>Cancel</button></td>
             </tr>
           );
