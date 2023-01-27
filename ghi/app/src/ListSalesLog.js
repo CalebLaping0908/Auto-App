@@ -15,7 +15,7 @@ function ListSalesLog(props) {
         <tr>
           <th>Sales Person</th>
           <th>Automobile</th>
-          <th>Sale Price</th>
+          <th>Purchase Price</th>
           <th>Customer</th>
           <th>VIN</th>
         </tr>

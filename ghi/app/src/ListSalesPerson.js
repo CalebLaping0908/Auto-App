@@ -1,6 +1,6 @@
 function ListSalesPerson(props) {
     const deleteSalesPerson = async(sales_person) => {
-      const sales_personUrl = `http://localhost:8090/api/sales_person/${sales_person.id}/`;
+      const sales_personUrl = `http://localhost:8090/api/sales/${sales_person.id}/`;
       const fetchConfig = {
         method: "delete",
       }

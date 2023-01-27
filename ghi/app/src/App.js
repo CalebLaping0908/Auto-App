@@ -5,8 +5,10 @@ import ListAppointments from './ListAppointments';
 import ListSalesLog from './ListSalesLog';
 import ListCustomer from './ListCustomer';
 import ListSalesPerson from './ListSalesPerson';
+import ListAutomobiles from './ListAutomobiles';
 import CreateAppointment from './CreateAppointment';
-import CreateSalesLog from './CreateSales';
+import CreateSalesLog from './CreateSalesLog';
+import CreateSalesPerson from './CreateSalesPerson';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -67,7 +69,7 @@ function App() {
   const [sales_person, setSalesPerson] = useState([]);
 
   const getSalesPerson = async () => {
-    const sales_personResponse = await fetch('http://localhost:8090/api/sales_person/');
+    const sales_personResponse = await fetch('http://localhost:8090/api/sales/');
 
     if (sales_personResponse.ok) {
       const sales_personData = await sales_personResponse.json();
@@ -76,10 +78,23 @@ function App() {
     }
   }
 
+  const [automobiles, setAutomobiles] = useState([]);
+
+  const getAutomobiles = async () => {
+    const automobilesResponse = await fetch('http://localhost:8100/api/automobiles/');
+
+    if (automobilesResponse.ok) {
+      const automobilesData = await automobilesResponse.json();
+
+      setAutomobiles(automobilesData.autos);
+    }
+  }
+
   useEffect(() => {
     getSalesLog();
     getCustomer();
     getSalesPerson();
+    getAutomobiles();
   }, [])
 
 
@@ -94,12 +109,13 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} />} />
-          <Route path="/sales_log" element={<ListSalesLog sales_log={sales_log} getSales_log={getSalesLog} />} />
+          <Route path="/sales_log" element={<ListSalesLog sales_log={sales_log} getSalesLog={getSalesLog} />} />
           <Route path="/customer" element={<ListCustomer customer={customer} getCustomer={getCustomer} />} />
-          <Route path="/sales_person" element={<ListSalesPerson sales_person={sales_person} getSales_person={getSalesPerson} />} />
+          <Route path="/sales_person" element={<ListSalesPerson sales_person={sales_person} getSalesPerson={getSalesPerson} />} />
+          <Route path="/automobiles" element={<ListAutomobiles automobiles={automobiles} getAutomobiles={getAutomobiles} />} />
           <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
-          <Route path="/create/sales_log" element={<CreateSalesLog getSales_person={getSalesPerson} getSales_log={getSalesLog} getCustomer={getCustomer}/>} />
-          {/* <Route path="/create/sales_person" element={<CreateSalesPerson getSales_person={getSalesPerson} get={}/>} /> */}
+          <Route path="/create/sales_log" element={<CreateSalesLog automobiles={automobiles} salesPerson={sales_person} customer={customer} setAutomobiles={setAutomobiles} setSalesPerson={setSalesPerson} setCustomer={setCustomer} getSalesLog={getSalesLog}/>} />
+          <Route path="/create/sales_person" element={<CreateSalesPerson  getSalesPerson={getSalesPerson} />}  />
           {/* <Route path="/create/customer" element={<CreateCustomer getCustomer={getCustomer} get={}/>} /> */}
         </Routes>
       </div>
