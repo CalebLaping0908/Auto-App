@@ -183,3 +183,14 @@ def api_show_sales_log(request, id):
     else:
         count, _ = SalesLog.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
+
+
+
+@require_http_methods(['GET'])
+def api_list_automobileVO(request):
+
+    automobiles = AutomobileVO.objects.all()
+    return JsonResponse(
+        {'autos': automobiles},
+        encoder=AutomobileVOEncoder,
+    )
