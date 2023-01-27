@@ -71,7 +71,7 @@ return (
                 <input onChange={handlePhoneNumberChange} value={phoneNumber} placeholder="Phone Number" required type="number" name="phone_number" id="phone_number" className="form-control" />
                 <label htmlFor="phone_number">Phone Number</label>
               </div>
-          <button className="btn btn-primary">Create New Customer</button>
+          <button className="btn btn-primary">Create Customer</button>
         </form>
       </div>
     </div>

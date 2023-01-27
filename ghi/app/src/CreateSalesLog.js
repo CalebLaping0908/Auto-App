@@ -61,58 +61,6 @@ function CreateSalesLog({automobiles, customer, salesPerson, setSalesPerson, set
         const value = event.target.value;
         setPurchasePriceInput(value);
       }
-// // const [vin, setVin] = useState('');
-// //     const handleVinChange = (event) => {
-// //         const value = event.target.value;
-// //         setVin(value);
-// //     }
-
-
-
-    // const [salesPersons, setSalesPersons] = useState([]);
-    // const fetchDataSalesPerson = async () => {
-
-    //     const urlSalesPerson = 'http://localhost:8090/api/sales/';
-
-    //     const responseSalesPerson = await fetch(urlSalesPerson);
-
-    //     if (responseSalesPerson.ok) {
-    //     const data = await responseSalesPerson.json();
-    //     setSalesPersons(data.sales_person);
-    //     }
-    // }
-
-    // const [automobiles, setAutomobiles] = useState([]);
-    // const fetchDataAutomobiles = async () => {
-
-    //     const urlAutomobiles = 'http://localhost:8100/api/automobiles/';
-
-    //     const responseAutomobiles = await fetch(urlAutomobiles);
-
-    //     if (responseAutomobiles.ok) {
-    //     const data = await responseAutomobiles.json();
-    //     setAutomobiles(data.autos);
-    //     }
-    // }
-
-    // const [customers, setCustomers] = useState([]);
-    // const fetchDataCustomers = async () => {
-
-    //     const urlCustomer = 'http://localhost:8090/api/customer/';
-
-    //     const responseCustomer = await fetch(urlCustomer);
-
-    //     if (responseCustomer.ok) {
-    //     const data = await responseCustomer.json();
-    //     setCustomers(data.customer);
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchDataCustomers();
-    //     fetchDataAutomobiles();
-    //     fetchDataSalesPerson();
-    // }, []);
-
 
     return (
         <div className="row">
