@@ -1,10 +1,10 @@
 function ListAutos(props) {
     const deleteAuto = async(auto) => {
-      const hatUrl = `http://localhost:8100${auto.href}`;
+      const autoUrl = `http://localhost:8100${auto.href}`;
       const fetchConfig = {
         method: "delete",
       }
-      const response = await fetch(hatUrl, fetchConfig)
+      const response = await fetch(autoUrl, fetchConfig)
       if (response.ok) {
         props.getAutomobiles()
       }

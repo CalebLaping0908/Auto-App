@@ -5,6 +5,7 @@ import ListAppointments from './ListAppointments';
 import CreateAppointment from './CreateAppointment';
 import CreateTechnician from './CreateTechnician';
 import ListAutos from './ListAutos';
+import ListModels from './ListModels';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -45,10 +46,23 @@ function App() {
     }
   }
 
+  const [models, setModels] = useState([]);
+
+  const getModels = async () => {
+    const modelResponse = await fetch('http://localhost:8100/api/models/');
+
+    if (modelResponse.ok) {
+      const modelData = await modelResponse.json();
+
+      setModels(modelData.models);
+    }
+  }
+
   useEffect(() => {
     getAppointments();
     getTechnicians();
     getAutomobiles();
+    getModels();
   }, [])
 
 
@@ -62,6 +76,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/models" element={<ListModels models={models} getModels={getModels} />} />
           <Route path="/automobiles" element={<ListAutos automobiles={automobiles} getAutomobiles={getAutomobiles} />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} setAppointments={setAppointments}/>} />
           <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
