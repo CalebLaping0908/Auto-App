@@ -6,6 +6,7 @@ import CreateAppointment from './CreateAppointment';
 import CreateTechnician from './CreateTechnician';
 import ListAutos from './ListAutos';
 import ListModels from './ListModels';
+import ListManufacturers from './ListManufacturers';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -58,11 +59,24 @@ function App() {
     }
   }
 
+  const [manufacturers, setManufacturers] = useState([]);
+
+  const getManufacturers = async () => {
+    const manufacturerResponse = await fetch('http://localhost:8100/api/manufacturers/');
+
+    if (manufacturerResponse.ok) {
+      const manufacturerData = await manufacturerResponse.json();
+
+      setManufacturers(manufacturerData.manufacturers);
+    }
+  }
+
   useEffect(() => {
     getAppointments();
     getTechnicians();
     getAutomobiles();
     getModels();
+    getManufacturers();
   }, [])
 
 
@@ -76,6 +90,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/manufacturers" element={<ListManufacturers manufacturers={manufacturers} getManufacturers={getManufacturers} />} />
           <Route path="/models" element={<ListModels models={models} getModels={getModels} />} />
           <Route path="/automobiles" element={<ListAutos automobiles={automobiles} getAutomobiles={getAutomobiles} />} />
           <Route path="/appointments" element={<ListAppointments appointments={appointments} getAppointments={getAppointments} setAppointments={setAppointments}/>} />

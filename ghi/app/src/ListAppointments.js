@@ -36,7 +36,7 @@ function ListAppointments({appointments, setAppointments, getAppointments}) {
     <div className='container'>
         <p></p>
         <h4>Search Appointment by VIN</h4>
-        <form onSubmit={handleSubmit} id="filter-appointments-form">
+        <form onSubmit={handleSubmit} className="input-group" id="filter-appointments-form">
             <input onChange={handleVinChange} value={vin} type="search" className="form-control rounded" placeholder="VIN" aria-label="Search" aria-describedby="search-addon" />
             <button className="btn btn-outline-primary">search</button>
         </form>
