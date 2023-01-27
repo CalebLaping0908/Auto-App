@@ -23,7 +23,7 @@ function ListSalesPerson(props) {
           <tr key={sales_person.id}>
             <td>{ sales_person.name }</td>
             <td>{ sales_person.employee_number }</td>
-            <td><button onClick={() => deleteSalesPerson(sales_person)}>Delete</button></td>
+            <td><button className="btn btn-danger" onClick={() => deleteSalesPerson(sales_person)}>Delete</button></td>
           </tr>
         );
       })}

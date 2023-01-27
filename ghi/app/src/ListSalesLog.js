@@ -28,7 +28,7 @@ function ListSalesLog(props) {
             <td>{ sale_log.automobile }</td>
             <td>{ sale_log.purchase_price }</td>
             <td>{ sale_log.customer }</td>
-            <td><button onClick={() => deleteSaleLog(sale_log)}>Delete</button></td>
+            <td><button className="btn btn-danger" onClick={() => deleteSaleLog(sale_log)}>Delete</button></td>
           </tr>
         );
       })}

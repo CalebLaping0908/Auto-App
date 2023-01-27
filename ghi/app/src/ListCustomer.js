@@ -1,6 +1,6 @@
 function ListCustomer(props) {
     const deleteCustomer = async(customer) => {
-      const customerUrl = `http://localhost:8090/apicustomer/${customer.id}/`;
+      const customerUrl = `http://localhost:8090/api/customer/${customer.id}/`;
       const fetchConfig = {
         method: "delete",
       }
@@ -25,7 +25,7 @@ function ListCustomer(props) {
             <td>{ customer.name }</td>
             <td>{ customer.address }</td>
             <td>{ customer.phone_number }</td>
-            <td><button onClick={() => deleteCustomer(customer)}>Delete</button></td>
+            <td><button className="btn btn-danger" onClick={() => deleteCustomer(customer)}>Delete</button></td>
           </tr>
         );
       })}

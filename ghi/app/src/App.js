@@ -9,6 +9,7 @@ import ListAutomobiles from './ListAutomobiles';
 import CreateAppointment from './CreateAppointment';
 import CreateSalesLog from './CreateSalesLog';
 import CreateSalesPerson from './CreateSalesPerson';
+import CreateCustomer from './CreateCustomer';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -116,7 +117,7 @@ function App() {
           <Route path="/create/appointment" element={<CreateAppointment getAppointments={getAppointments} getTechnicians={getTechnicians}/>} />
           <Route path="/create/sales_log" element={<CreateSalesLog automobiles={automobiles} salesPerson={sales_person} customer={customer} setAutomobiles={setAutomobiles} setSalesPerson={setSalesPerson} setCustomer={setCustomer} getSalesLog={getSalesLog}/>} />
           <Route path="/create/sales_person" element={<CreateSalesPerson  getSalesPerson={getSalesPerson} />}  />
-          {/* <Route path="/create/customer" element={<CreateCustomer getCustomer={getCustomer} get={}/>} /> */}
+          <Route path="/create/customer" element={<CreateCustomer getCustomer={getCustomer}/>} />
         </Routes>
       </div>
     </BrowserRouter>
