@@ -9,6 +9,7 @@ import ListModels from './ListModels';
 import ListManufacturers from './ListManufacturers';
 import CreateAutomobile from './CreateAutomobile';
 import CreateModel from './CreateModel';
+import CreateManufacturer from './CreateManufacturer';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/manufacturers" element={<ListManufacturers manufacturers={manufacturers} getManufacturers={getManufacturers} />} />
+          <Route path="/create/manufacturer" element={<CreateManufacturer getManufacturers={getManufacturers} />} />
           <Route path="/models" element={<ListModels models={models} getModels={getModels} />} />
           <Route path="/create/model" element={<CreateModel getModels={getModels} />} />
           <Route path="/automobiles" element={<ListAutos automobiles={automobiles} getAutomobiles={getAutomobiles} />} />
