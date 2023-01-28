@@ -737,55 +737,55 @@ http://localhost:8090
 ## Service microservice
 
 AutomobileVO:
-    Value object for the automobile model in the inventory microservice.
-    Created by polling inventory api using service/poll/poller.py
-    3 Attributes:
-        color: CharField
-        year: PositiveSmallIntegerField
-        vin: CharField(unique=True)
+Value object for the automobile model in the inventory microservice.
+Created by polling inventory api using service/poll/poller.py
+* 3 Attributes:
+* color: CharField
+* year: PositiveSmallIntegerField
+* vin: CharField(unique=True)
 
 Technician:
     Model to house technicians necessary for service appointments.
-    2 Attributes:
-        name: CharField
-        employee_number: PositiveSmallIntegerField(unique=True)
+* 2 Attributes:
+* name: CharField
+* employee_number: PositiveSmallIntegerField(unique=True)
 
 Appointment:
     Model to house service appointments.
     1 foreign key to the Technician model.
-    6 Attributes:
-        vin: CharField
-        owner: CharField
-        time: DateField
-        reason: TextField
-        vip: BooleanField
-        technician: Foreign key to Technician model.
+* 6 Attributes:
+* vin: CharField
+* owner: CharField
+* time: DateField
+* reason: TextField
+* vip: BooleanField
+* technician: Foreign key to Technician model.
 
 ## Sales microservice
 
 AutomobileVO:
     Value object for the automobile model in the inventory microservice.
     Created by polling inventory api using service/poll/poller.py
-    3 Attributes:
-        color: CharField
-        year: PositiveSmallIntegerField
-        vin: CharField(unique=True)
+* 3 Attributes:
+* color: CharField
+* year: PositiveSmallIntegerField
+* vin: CharField(unique=True)
 
 SalesPerson:
     Model to house sales people necessary for selling autos.
-    2 Attributes:
-        name: CharField
-        employee_number: PositiveSmallIntegerField(unique=True)
+* 2 Attributes:
+* name: CharField
+* employee_number: PositiveSmallIntegerField(unique=True)
 
 Customer:
     Model to house customers necessary for buying autos.
-    3 Attributes:
-        name: CharField
-        address: CharField
-        phone_number: CharField
+* 3 Attributes:
+* name: CharField
+* address: CharField
+* phone_number: CharField
 
 SalesLog:
     Model to house all sale records.
     3 foreign key to the automobile model, customer model, and sales person.
-    1 Attributes:
-        purchase_price: PositiveIntegerField
+* 1 Attributes:
+* purchase_price: PositiveIntegerField
